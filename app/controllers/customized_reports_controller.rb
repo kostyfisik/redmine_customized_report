@@ -9,7 +9,7 @@ class CustomizedReportsController < ApplicationController
   include ReportQueriesHelper
   def index
     retrieve_report_query
-    @result = @query.count_and_group_by
+    @result = @query.count_and_group_by(:project => project, :with_subprojects => true, :association => :assigned_to)
     @data = @result[:data]
     @rows = @result[:rows]
     @cols = @result[:cols]
